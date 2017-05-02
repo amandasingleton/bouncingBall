@@ -1,6 +1,7 @@
 clf;
-x0=0.5; y0=1; u0=0.3; v0=0; x=x0; y=y0;
-xmin=0; ymin=0; xmax=1; ymax=1;
+r=0.05;
+x0=0.5; y0=1-r; u0=0.3; v0=0; x=x0; y=y0;
+xmin=r; ymin=r; xmax=1-r; ymax=1-r;
 alpha=0.8; beta=0.99;
 
 
@@ -20,9 +21,7 @@ while t<tf
         v0= -alpha*v;
         u0= beta*u;
         end
-%         if abs(v)<2
-%             v0=0;
-%         end
+
     end
     if x<xmin
         if u<0
@@ -48,15 +47,12 @@ while t<tf
     t=t+dt;
     x0=x; u0=u;
     y0=y; v0=v;
-    %adds grass
-    %plot(g,1,'g^','Markersize',10,'Markerfacecolor','g');
-    %hold on
-    plot(x,y,'rs','MarkerSize',10,'MarkerFaceColor','r');
-    %hold off
+    Draw_Disk(x,y,r)
+    %plot(x,y,'rs','MarkerSize',10,'MarkerFaceColor','r');
+    
     axis([0 1 0 1])
     pause(dt/10);
 end
 %I confirm that I did not use codes from the web or from past years'
 %assignments and that the work I submit is my own and my partner's only
-%test for github
 clf;
